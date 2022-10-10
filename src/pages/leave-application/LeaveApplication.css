@@ -1,0 +1,13 @@
+form{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.btnSection{
+    margin-top: auto;
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+    flex-basis: content;
+    display: flex;
+    flex-direction: row;
+}

@@ -1,6 +1,6 @@
 import './App.css';
 import LeaveApplication from './pages/leave-application/LeaveApplication';
-import LeaveTypeEntry from './pages/leave-type-entry/LeaveTypeEntry';
+import LeaveEntry from './pages/leave-entry/LeaveEntry';
 import {
   BrowserRouter,
   Routes,
@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LeaveApplication/>}></Route>
         <Route path="leaveapplication" element={<LeaveApplication/>}></Route>
-        <Route path="leavetypeentry" element={<LeaveTypeEntry/>}></Route>
+        <Route path="leaveentry" element={<LeaveEntry/>}></Route>
       </Routes>
     </BrowserRouter>
     </div>

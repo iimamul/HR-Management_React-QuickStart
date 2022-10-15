@@ -1,8 +1,8 @@
-.row{
+.inputContainer{
     display: flex;
+    flex-direction: column;
 }
 
-/* .btnRow{
-    display: flex;
-    align-items: center;
-} */
+.inputBox{
+    width: 80%;
+}

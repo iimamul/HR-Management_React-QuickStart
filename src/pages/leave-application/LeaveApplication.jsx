@@ -1,7 +1,7 @@
 import React,{ useState } from 'react'
+import './LeaveApplication.css'
 import InputField from '../../components/form-field/InputField'
 import Paper from '@mui/material/Paper';
-import './LeaveApplication.css'
 import { SaveButton,CancelButton } from '../../components/form-field/FormButton.jsx';
 
 const LeaveApplication = () => {
@@ -25,7 +25,7 @@ const LeaveApplication = () => {
         id:1,
         name:'applicationNo',
         label:'Application No',
-        type:'text',
+        type:'text'
       },
       {
         id:2,
@@ -74,21 +74,21 @@ const LeaveApplication = () => {
   return (
     <div>
         <h1>Leave Application</h1>
-        <Paper elevation={3} style={{margin:'1rem',padding:'1rem'}}>
-            <form onSubmit={handleSubmit}>
+        <Paper elevation={3} style={{margin:'3rem'}}>
+            <form className='apContainer' onSubmit={handleSubmit}>
                 {
                     inputs.map((input)=>(
                         <InputField 
                             key={input.id} 
-                            style={{marginLeft:'2rem',width:'18rem'}} 
                             {...input} 
                             value={formValues[input.name]}
+                            className='inputBoxAp'
                             onChange={onChange}
                         />
                     ))
                 }
-                <div className='btnSection'>
-                    <SaveButton type='submit' style={{marginRight:'2em'}}>Save</SaveButton>
+                <div className='inputBoxAp'>
+                    <SaveButton type='submit'>Save</SaveButton>
                     <CancelButton onClick={clearFields}>Clear</CancelButton>
                 </div>
             </form>

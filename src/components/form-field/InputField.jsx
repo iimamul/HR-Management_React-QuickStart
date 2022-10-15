@@ -12,6 +12,7 @@ const InputField = (props) => {
             label={label}  
             variant="outlined"  
             onChange={onChange}
+            className={className}
             name={name}
             multiline={multiline}
             rows={rows}

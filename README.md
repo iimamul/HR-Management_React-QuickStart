@@ -1,6 +1,12 @@
 
-## Process need to follow
+# Quick Start a ReactJS app
 
+This repo is consist of some quick start docs that we need when we start a new ReactJS project. Besides react there are some necessary libraries that we need while working on React.
+
+
+---
+## Creating a Project
+---
 ### 1. Create a reactJs project 
 
 First open your directory in console where you
@@ -34,6 +40,9 @@ create new page component `LeaveApplication.jsx` file inside
 `leave-application` page folder. inside this file write 
 `rafc` snippet and hit enter to create a `reactArrowFunctionExportComponent`.
 
+---
+## Adding Material UI
+---
 ### 4. Install MUI for ReactJs
 
 Install these packages for material UI if you want to
@@ -294,7 +303,9 @@ Now add the page component in **App.js**
       <LeaveApplication/>
     </div>
 ```
-
+---
+## Routing  
+---
 ### 6. Add routing to the application
 
 First install react-router-dom  following this [docs](https://reactrouter.com/en/v6.3.0/getting-started/overview).
@@ -327,5 +338,116 @@ function App() {
 }
 
 export default App;
+
+```
+---
+## Form Manage & Validate (FORMIK & YUP)
+---
+### 7. Use formik to manage and validate form
+
+Formik is third party React form library. It provides basic form programming and validation.
+Here is te [docs](https://formik.org/docs/tutorial) and
+[youtube link](https://youtu.be/vJtyp1YmOpc) where i got this.
+
+First install `formik` and `Yup` using npm
+```bash
+npm install formik --save
+npm install yup --save
+```
+Then create a new page component **LeaveEntry.jsx** inside `pages>leave-entry`
+and write the following code. 
+```bash
+npm install formik --save
+npm install yup --save
+```
+In ***LeaveEntry.jsx*** do the follwing changes to add formik and Yup code.
+Here on submit we just print the form value on console.
+```bash
+import React from 'react'
+import { CancelButton, SaveButton } from '../../components/form-field/FormButton'
+import InputField from '../../components/form-field/InputField'
+import './LeaveEntry.css'
+import { Paper,Table,TableContainer,TableHead,TableRow,TableCell,TableBody } from '@mui/material'
+import { useFormik } from 'formik'
+import * as Yup from 'yup';
+
+const initialValue={
+  leaveName:'',
+  allowedDays:0
+}
+
+const LeaveEntry = () => {
+  const formik=useFormik({
+    initialValues:initialValue,
+    onSubmit:(values)=>{
+      console.log(values)
+    },
+    validationSchema: Yup.object({
+      leaveName: Yup.string()
+            .max(10, 'Leave Name must be 10 charcter or less')
+            .required('Leave Name is Required'),
+      allowedDays: Yup.number()
+            .required('Allowed days is Required')
+            .max(10,'Max value should be 10'),
+    })
+  })
+  return (
+    <div>
+        <div className="row">
+            <Paper style={{margin:'1rem',padding:'1rem', width:'30%'}}>
+                <h2>Leave Type Entry</h2>
+                <form onSubmit={formik.handleSubmit}>
+                  <InputField 
+                    name='leaveName' 
+                    label='Leave Name' 
+                    style={{width:'90%'}}
+                    onChange={formik.handleChange}
+                    // onBlur={formik.handleBlur} 
+                    value={formik.values.firstName}
+                  /> 
+                  {formik.touched.leaveName && formik.errors.leaveName ? ( <div>{formik.errors.leaveName}</div>) : null}
+                  
+                  <InputField 
+                    name='allowedDays' 
+                    type='number' 
+                    label='Allowed Days' 
+                    style={{width:'90%'}}
+                    onChange={formik.handleChange}
+                    // onBlur={formik.handleBlur} 
+                    value={formik.values.allowedDays}
+                  /> 
+                  {formik.touched.allowedDays && formik.errors.allowedDays ? ( <div>{formik.errors.allowedDays}</div>) : null}
+
+                  <div className="btnRow">
+                    <SaveButton type='submit'>Save</SaveButton>
+                    <CancelButton >Clear</CancelButton>
+                  </div>
+                </form>
+            </Paper>
+            <Paper style={{margin:'1rem', width:'70%'}}>
+                <div>Just another day</div>
+            </Paper>
+        </div>
+    </div>
+  )
+}
+
+export default LeaveEntry
+```
+---
+## Get/Post Data with **Axios**
+---
+### 8. Install axios packages and do the rest following [documentation](https://axios-http.com/docs/intro)
+```terminal
+npm install axios
+```
+import `axios` and create api with base url references
+```jsx
+import axios from 'axios'
+
+const api=axios.create({
+  baseURL:'https://localhost:7109/api/'
+})
+//Get call
 
 ```
